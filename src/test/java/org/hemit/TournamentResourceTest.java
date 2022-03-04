@@ -32,4 +32,14 @@ public class TournamentResourceTest {
         assertThat(getResponse.statusCode, is(200));
         assertThat(getResponse.content.name, is(tournamentName));
     }
+    
+    @Test
+    public void tournament_already_exist() {
+
+        StatusAndContent<CreateResponse> createResponse1 = TournamentUtils.createTournament("New tournament");
+        StatusAndContent<CreateResponse> createResponse2 = TournamentUtils.createTournament("New tournament");
+
+        assertThat(createResponse1.statusCode, is(201));
+        assertThat(createResponse2.statusCode, is(400));
+    }
 }

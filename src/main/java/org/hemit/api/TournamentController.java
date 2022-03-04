@@ -1,5 +1,6 @@
 package org.hemit.api;
 
+import io.quarkus.logging.Log;
 import org.hemit.model.CreateResponse;
 import org.hemit.model.Tournament;
 import org.hemit.model.TournamentToCreate;
@@ -9,6 +10,7 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.HashMap;
 
 @Path("tournaments")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -21,6 +23,11 @@ public class TournamentController {
     @POST
     public Response createTournament(TournamentToCreate tournament) {
         String id = tournamentRepository.create(tournament);
+        Log.info("azert");
+        if(id.equals("already Exist")){
+            Log.info("azert1");
+            return Response.status(Response.Status.TEMPORARY_REDIRECT).entity(new CreateResponse(id)).build();
+        }
         return Response.status(Response.Status.CREATED).entity(new CreateResponse(id)).build();
     }
 
@@ -28,5 +35,10 @@ public class TournamentController {
     @Path("{id}")
     public Tournament getTournamentById(@PathParam("id") String id) {
         return tournamentRepository.get(id);
+    }
+
+    @GET
+    public HashMap<String, Tournament> getTournaments() {
+        return tournamentRepository.getAll();
     }
 }

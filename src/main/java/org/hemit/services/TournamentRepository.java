@@ -13,6 +13,9 @@ public class TournamentRepository {
     private static final HashMap<String, Tournament> Tournaments = new HashMap<>();
 
     public String create(TournamentToCreate tournament) {
+        if(Tournaments.containsKey(tournament.name)){
+            return "already Exist";
+        }
         String id = UUID.randomUUID().toString();
         Tournaments.put(id, new Tournament(tournament.name));
         return id;
@@ -20,5 +23,9 @@ public class TournamentRepository {
 
     public Tournament get(String id) {
         return Tournaments.get(id);
+    }
+
+    public static HashMap<String, Tournament> getAll() {
+        return Tournaments.values();
     }
 }

@@ -5,12 +5,19 @@ import org.hemit.StatusAndContent;
 import org.hemit.model.CreateResponse;
 import org.hemit.model.Tournament;
 import org.hemit.model.TournamentToCreate;
+import org.hemit.services.TournamentRepository;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.when;
+import static java.sql.DriverManager.println;
 
 public class TournamentUtils {
     public static StatusAndContent<CreateResponse> createTournament(String tournamentName) {
+        println("azert2");
+        if(TournamentRepository.getAll().containsKey(tournamentName)){
+            println("azert3");
+            return new StatusAndContent<>(400, null);
+        }
         ValidatableResponse response = given()
                 .contentType("application/json")
                 .body(new TournamentToCreate(tournamentName))

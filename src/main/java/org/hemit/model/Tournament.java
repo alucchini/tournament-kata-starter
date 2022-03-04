@@ -6,7 +6,4 @@ public class Tournament {
     public Tournament(String name) {
         this.name = name;
     }
-
-    public Tournament() {
-    }
 }
