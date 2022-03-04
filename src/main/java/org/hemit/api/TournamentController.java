@@ -25,7 +25,7 @@ public class TournamentController {
         String id = tournamentRepository.create(tournament);
         Log.info("azert");
         if(id.equals("already Exist")){
-            Log.info("azert1");
+            Log.info("azert0");
             return Response.status(Response.Status.TEMPORARY_REDIRECT).entity(new CreateResponse(id)).build();
         }
         return Response.status(Response.Status.CREATED).entity(new CreateResponse(id)).build();
