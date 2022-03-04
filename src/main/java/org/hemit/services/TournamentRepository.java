@@ -4,6 +4,7 @@ import org.hemit.model.Tournament;
 import org.hemit.model.TournamentToCreate;
 
 import javax.enterprise.context.ApplicationScoped;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -25,7 +26,7 @@ public class TournamentRepository {
         return Tournaments.get(id);
     }
 
-    public static HashMap<String, Tournament> getAll() {
+    public static Collection<Tournament> getAll() {
         return Tournaments.values();
     }
 }

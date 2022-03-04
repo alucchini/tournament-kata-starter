@@ -8,7 +8,4 @@ public class Participant {
     this.name = name;
     this.elo = elo;
   }
-
-  public Participant() {
-  }
 }

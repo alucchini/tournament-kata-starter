@@ -4,7 +4,7 @@ import org.hemit.model.Participant;
 import org.hemit.model.ParticipantToCreate;
 
 import javax.enterprise.context.ApplicationScoped;
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -26,7 +26,7 @@ public class ParticipantRepository {
     return Participants.get(id);
   }
 
-  public ArrayList getAll() {
-    return (ArrayList) Participants.values();
+  public Collection<Participant> getAll() {
+    return Participants.values();
   }
 }

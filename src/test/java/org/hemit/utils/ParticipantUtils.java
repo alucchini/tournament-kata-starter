@@ -4,6 +4,9 @@ import io.restassured.response.ValidatableResponse;
 import org.hemit.StatusAndContent;
 import org.hemit.model.*;
 
+import java.lang.reflect.Type;
+import java.util.Collection;
+
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.when;
 
@@ -43,7 +46,7 @@ public class ParticipantUtils {
     int statusCode = response.extract().statusCode();
     Participant content = null;
     if (statusCode == 200) {
-      content = response.extract().as(Participant.class);
+      content = response.extract().as((Type) Collection.class);
     }
 
     return new StatusAndContent<>(statusCode, content);

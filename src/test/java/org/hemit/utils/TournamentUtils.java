@@ -9,15 +9,15 @@ import org.hemit.services.TournamentRepository;
 
 import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.when;
-import static java.sql.DriverManager.println;
 
 public class TournamentUtils {
     public static StatusAndContent<CreateResponse> createTournament(String tournamentName) {
-        println("azert2");
-        if(TournamentRepository.getAll().containsKey(tournamentName)){
-            println("azert3");
+
+        //check if already exist
+        if(TournamentRepository.getAll().stream().anyMatch(participants -> participants.name.equals(tournamentName))){
             return new StatusAndContent<>(400, null);
         }
+
         ValidatableResponse response = given()
                 .contentType("application/json")
                 .body(new TournamentToCreate(tournamentName))
@@ -35,6 +35,7 @@ public class TournamentUtils {
     }
 
     public static StatusAndContent<Tournament> getTournamentById(String id) {
+
         ValidatableResponse response = when().get("/tournaments/"+id).then();
 
         int statusCode = response.extract().statusCode();

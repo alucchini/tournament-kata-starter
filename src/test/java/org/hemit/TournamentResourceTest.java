@@ -36,8 +36,8 @@ public class TournamentResourceTest {
     @Test
     public void tournament_already_exist() {
 
-        StatusAndContent<CreateResponse> createResponse1 = TournamentUtils.createTournament("New tournament");
-        StatusAndContent<CreateResponse> createResponse2 = TournamentUtils.createTournament("New tournament");
+        StatusAndContent<CreateResponse> createResponse1 = TournamentUtils.createTournament("New tournament2");
+        StatusAndContent<CreateResponse> createResponse2 = TournamentUtils.createTournament("New tournament2");
 
         assertThat(createResponse1.statusCode, is(201));
         assertThat(createResponse2.statusCode, is(400));

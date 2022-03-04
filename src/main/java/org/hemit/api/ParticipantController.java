@@ -7,8 +7,7 @@ import javax.inject.Inject;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Collection;
 
 @Path("tournaments/{tounamentId}/participants")
 @Consumes(MediaType.APPLICATION_JSON)
@@ -30,7 +29,7 @@ public class ParticipantController {
   }
 
   @GET
-  public ArrayList getParticipants() {
+  public Collection<Participant> getParticipants() {
     return participantRepository.getAll();
   }
 }
